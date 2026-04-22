@@ -1,0 +1,5 @@
+{
+  "type": "send_email",
+  "to": "vendor@example.com",
+  "subject": "Approved invoice"
+}

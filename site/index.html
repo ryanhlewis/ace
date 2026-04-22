@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ACE Runtime</title>
+    <meta
+      name="description"
+      content="Assumption-Carrying Execution: deterministic pre-execution leases for agent side effects."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main>
+      <section class="hero">
+        <div class="eyebrow">Assumption-Carrying Execution</div>
+        <h1>Turn agent assumptions into executable runtime leases.</h1>
+        <p>
+          ACE is a deterministic pre-execution gate for agent side effects. It
+          checks the action hash, approval state, expiry, and evidence predicates
+          before tools can mutate the world.
+        </p>
+        <div class="actions">
+          <a href="#quickstart">Quick start</a>
+          <a href="#benchmark" class="secondary">Benchmark</a>
+        </div>
+      </section>
+
+      <section class="grid stats" id="benchmark">
+        <article>
+          <span>ACE preflight</span>
+          <strong>100.0%</strong>
+          <p>6,114 / 6,114 policy probes from ST-WebAgentBench.</p>
+        </article>
+        <article>
+          <span>Execute-all baseline</span>
+          <strong>50.0%</strong>
+          <p>Policy-blind execution passes compliant probes and fails violations.</p>
+        </article>
+        <article>
+          <span>Keyword guard</span>
+          <strong>61.7%</strong>
+          <p>A simple lexical safety filter misses benchmark-specific predicates.</p>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div>
+          <h2>How ACE works</h2>
+          <p>
+            The model may propose actions, but the final permission decision is
+            deterministic. If the current evidence does not satisfy the lease,
+            the action is denied or deferred.
+          </p>
+        </div>
+        <div class="flow">
+          <div>Agent action</div>
+          <div>Lease</div>
+          <div>Evidence</div>
+          <div class="gate">ACE gate</div>
+          <div>Permit / deny / defer</div>
+        </div>
+      </section>
+
+      <section class="split" id="quickstart">
+        <div>
+          <h2>Quick start</h2>
+          <p>Install locally and run the included stale-approval demo.</p>
+          <pre><code>python -m venv .venv
+source .venv/bin/activate
+pip install -e ".[dev]"
+
+ace-runtime demo
+pytest</code></pre>
+        </div>
+        <div>
+          <h2>Public-policy benchmark</h2>
+          <p>
+            Download the public ST-WebAgentBench policy file and run the
+            deterministic preflight benchmark.
+          </p>
+          <pre><code>ace-runtime benchmark-stwebagentbench \
+  --download-if-missing \
+  --data data/stwebagentbench/test.raw.json \
+  --output-dir results/stwebagentbench-ace-preflight</code></pre>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div>
+          <h2>What the benchmark proves</h2>
+          <p>
+            It proves that explicit policy rows can be compiled into leases and
+            enforced before execution. It does not claim official browser-agent
+            leaderboard performance.
+          </p>
+        </div>
+        <ul class="checks">
+          <li>3,057 public policy instances compiled</li>
+          <li>6,114 paired violation/compliance probes</li>
+          <li>Source hash included for audit</li>
+          <li>No LLM endpoint required</li>
+        </ul>
+      </section>
+
+      <section class="split">
+        <div>
+          <h2>Use ACE for</h2>
+          <ul>
+            <li>tool-call authorization</li>
+            <li>human approval leases</li>
+            <li>browser-agent side effects</li>
+            <li>deployment and workflow gates</li>
+            <li>policy-bound publication</li>
+          </ul>
+        </div>
+        <div>
+          <h2>Do not overclaim</h2>
+          <ul>
+            <li>ACE validates evidence, not reality.</li>
+            <li>Wrong policy compilation means wrong enforcement.</li>
+            <li>Bypassable tools break the guarantee.</li>
+            <li>This is not an MMLU-style reasoning trick.</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

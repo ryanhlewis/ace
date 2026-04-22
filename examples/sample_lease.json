@@ -1,0 +1,29 @@
+{
+  "action_id": "send-approved-invoice",
+  "approval_state": "approved",
+  "content_hash": "3f0e7e915b5c6130ff523573f938d32258a935b62d799e51846d693cc1254150",
+  "expires_at": "",
+  "policy_context": {
+    "source": "example"
+  },
+  "requirements": [
+    {
+      "field": "approval_status",
+      "message": "approval must still be active",
+      "op": "eq",
+      "value": "approved"
+    },
+    {
+      "field": "recipient",
+      "message": "recipient must match approval",
+      "op": "eq",
+      "value": "vendor@example.com"
+    },
+    {
+      "field": "invoice_hash",
+      "message": "invoice content must not change",
+      "op": "eq",
+      "value": "inv-17"
+    }
+  ]
+}

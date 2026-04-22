@@ -1,0 +1,11 @@
+{
+  "attested": false,
+  "facts": {
+    "approval_status": "approved",
+    "invoice_hash": "inv-17",
+    "recipient": "vendor@example.com"
+  },
+  "observed_at": "",
+  "snapshot_id": "valid-example",
+  "source": "example"
+}
