@@ -22,6 +22,18 @@ that was approved.
 
 ACE turns those hidden assumptions into explicit runtime contracts.
 
+## Project Story
+
+This project started from a simple observation: many dangerous agent failures
+are not purely reasoning failures. The agent may produce a plausible action, but
+the assumptions that justified that action have already changed.
+
+The final public story is therefore narrow and concrete:
+
+1. formalize the missing runtime primitive: an action lease over current evidence
+2. build a deterministic validator for those leases
+3. test it on a public policy benchmark where the validity conditions are explicit
+
 ## Quick Start
 
 ```bash
@@ -80,6 +92,19 @@ Public benchmark snapshot hash:
 ```text
 31817831f963425bdc4d582936f2b9c0b9714fc986be7b4df67e50f2921e9a34
 ```
+
+## Experiment Ladder
+
+The project went through several experiment layers before arriving at the final
+public benchmark:
+
+- **theory motivation**: failures under stale assumptions or stale worldviews
+- **tool-call validation**: runtime checking can improve exact execution
+- **qualitative generated-artifact gating**: publish-time assumptions matter
+- **public benchmark**: ST-WebAgentBench-derived policy preflight
+
+Only the final public benchmark anchors the main claim. The rest are supporting
+experiments and case studies.
 
 ## Architecture
 

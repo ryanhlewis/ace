@@ -24,6 +24,12 @@
           <a href="#quickstart">Quick start</a>
           <a href="#benchmark" class="secondary">Benchmark</a>
         </div>
+        <div class="deliverables">
+          <span>Runtime library</span>
+          <span>Public benchmark</span>
+          <span>Examples</span>
+          <span>Deployed docs</span>
+        </div>
       </section>
 
       <section class="grid stats" id="benchmark">
@@ -62,6 +68,35 @@
         </div>
       </section>
 
+      <section class="panel">
+        <div>
+          <h2>The project story</h2>
+          <p>
+            The core question was not "how do we make the model sound smarter?"
+            It was "how do we stop an agent from executing after the justification
+            for an action has gone stale?"
+          </p>
+        </div>
+        <div class="story-grid">
+          <div>
+            <strong>Problem</strong>
+            <p>Agents act on stale approvals, stale scope, and stale evidence.</p>
+          </div>
+          <div>
+            <strong>Idea</strong>
+            <p>Bind each action to a lease over explicit predicates.</p>
+          </div>
+          <div>
+            <strong>Runtime</strong>
+            <p>Validate action hash, expiry, and evidence predicates before execution.</p>
+          </div>
+          <div>
+            <strong>Proof</strong>
+            <p>Use a public policy benchmark instead of a custom private scaffold.</p>
+          </div>
+        </div>
+      </section>
+
       <section class="split" id="quickstart">
         <div>
           <h2>Quick start</h2>
@@ -88,6 +123,22 @@ pytest</code></pre>
 
       <section class="panel">
         <div>
+          <h2>Experiment ladder</h2>
+          <p>
+            The final public benchmark is the end of a chain of experiments, not
+            the only thing we tried.
+          </p>
+        </div>
+        <ol class="ladder">
+          <li><strong>Theory motivation:</strong> agents become dangerous when they keep acting under stale assumptions.</li>
+          <li><strong>Tool-call validation:</strong> runtime checking can improve exact execution on structured calls.</li>
+          <li><strong>Qualitative gating case studies:</strong> a generated artifact can look plausible and still violate publish-time assumptions.</li>
+          <li><strong>Public benchmark:</strong> compile public ST-WebAgentBench policy rows into executable leases.</li>
+        </ol>
+      </section>
+
+      <section class="panel">
+        <div>
           <h2>What the benchmark proves</h2>
           <p>
             It proves that explicit policy rows can be compiled into leases and
@@ -101,6 +152,43 @@ pytest</code></pre>
           <li>Source hash included for audit</li>
           <li>No LLM endpoint required</li>
         </ul>
+      </section>
+
+      <section class="panel">
+        <div>
+          <h2>Repository contents</h2>
+          <p>
+            The public repo stays focused on the runtime, the benchmark runner,
+            examples, and the documentation needed to reproduce the core claim.
+          </p>
+        </div>
+        <ul class="checks">
+          <li><code>src/ace_runtime/lease.py</code></li>
+          <li><code>src/ace_runtime/stwebagentbench.py</code></li>
+          <li><code>examples/</code></li>
+          <li><code>docs/BENCHMARKS.md</code></li>
+        </ul>
+      </section>
+
+      <section class="split">
+        <div>
+          <h2>What worked</h2>
+          <ul>
+            <li>the core validator stayed very small</li>
+            <li>the benchmark became auditable and reproducible</li>
+            <li>the claim stayed narrow enough to defend</li>
+            <li>the result does not depend on a private endpoint</li>
+          </ul>
+        </div>
+        <div>
+          <h2>What failed or stayed out</h2>
+          <ul>
+            <li>custom harnesses were weaker as public proof</li>
+            <li>live endpoint comparisons were too fragile</li>
+            <li>official browser-agent leaderboard performance is still future work</li>
+            <li>ACE validates evidence, not the world itself</li>
+          </ul>
+        </div>
       </section>
 
       <section class="split">
@@ -122,6 +210,23 @@ pytest</code></pre>
             <li>Bypassable tools break the guarantee.</li>
             <li>This is not an MMLU-style reasoning trick.</li>
           </ul>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div>
+          <h2>Next step</h2>
+          <p>
+            The next real milestone is to insert ACE into a live browser-agent or
+            tool-agent loop and measure end-to-end policy-aware performance:
+            task success, violations, overblocking, and revalidation burden.
+          </p>
+        </div>
+        <div class="next-box">
+          <div>live tool mediation</div>
+          <div>evidence provenance</div>
+          <div>receipts and audit logs</div>
+          <div>human re-approval flows</div>
         </div>
       </section>
     </main>
